@@ -5,7 +5,7 @@ import { compare, hash } from 'bcrypt';
 import { Model } from 'mongoose';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { User, UserDocument } from 'src/users/schema/user.schema';
-import { Roles, RolesDocument, RolesSchema } from './schema/roles.schema';
+import { Roles, RolesDocument } from './schema/roles.schema';
 
 
 @Injectable()

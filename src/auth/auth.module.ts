@@ -6,7 +6,6 @@ import { User, UserSchema } from 'src/users/schema/user.schema';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './jwt.constants';
 import { Roles, RolesSchema } from './schema/roles.schema';
 
 
