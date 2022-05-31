@@ -26,7 +26,7 @@ address: string;
 
 
 @Prop()
-phoneNumber: number;
+phone: number;
 
 @Prop([{type: SchemaTypes.ObjectId, ref: Roles.name}])
 roles:Types.ObjectId[];

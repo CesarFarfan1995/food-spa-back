@@ -7,12 +7,13 @@ import { RoleGuard } from 'src/auth/role.guard';
 import { Roles } from 'src/auth/decorators/role.decorator';
 
 
-@UseGuards(JwtGuard,RoleGuard)
+
 @ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  @UseGuards(JwtGuard,RoleGuard)
   @Roles('admin')
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
@@ -24,13 +25,14 @@ export class ProductsController {
     return this.productsService.findAll()
   }
 
-
+  @UseGuards(JwtGuard,RoleGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
 
 
+  @UseGuards(JwtGuard,RoleGuard)
   @Roles('admin')
   @Put(':id')
   update(@Param('id') id: string, @Body() product: CreateProductDto) {
@@ -38,6 +40,7 @@ export class ProductsController {
   }
 
 
+  @UseGuards(JwtGuard,RoleGuard)
   @Roles('admin')
   @Delete(':id')
   remove(@Param('id') id: string) {
