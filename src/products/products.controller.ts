@@ -25,7 +25,7 @@ export class ProductsController {
     return this.productsService.findAll()
   }
 
-  @UseGuards(JwtGuard,RoleGuard)
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
