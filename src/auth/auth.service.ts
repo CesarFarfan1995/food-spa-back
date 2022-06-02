@@ -38,7 +38,6 @@ export class AuthService implements OnModuleInit {
 
   async registerUser(user: CreateUserDto) {
     const {password, email, roles} = user;
-    const newRole:string[] = []
     console.log(roles)
     const userRepeat = await this.userModel.findOne({email:email})
 
@@ -46,20 +45,29 @@ export class AuthService implements OnModuleInit {
 
     const passwordHash = await hash(password, 10)
 
+    // if(roles.length > 0){
+    //   const foundRoles = await this.rolesModel.find({name: {$in: roles}})     
+    //   user.roles = foundRoles.map(roles => roles._id)
+       
+    // }else {
+    //   const role = await this.rolesModel.findOne({name:'user' })
+    //   user.roles = [role._id]
+    // }
+
     if(roles.length > 0){
-      const foundRoles = await this.rolesModel.find({name: {$in: roles}})     
-      user.roles = foundRoles.map(roles => roles._id)
+
+      throw  new HttpException('You do not have permissions to perform this action', 403)
        
     }else {
       const role = await this.rolesModel.findOne({name:'user' })
       user.roles = [role._id]
     }
 
+
     
 
     user = {...user, password: passwordHash }
 
-    // return {user}
 
     return  await this.userModel.create(user)
   }
@@ -91,7 +99,8 @@ export class AuthService implements OnModuleInit {
 
   const data = {
     user:isUser,
-    token:token
+    token:token,
+    roles:rol
   }
 
   return data
