@@ -24,7 +24,7 @@ export class ProductsService {
     return  await this.productSvc.findOne({_id:id})
   }
 
-  async update(id: string, product: CreateProductDto) {
+  async update(id: string, product: UpdateProductDto) {
     const updatedProduct = await this.productSvc.findByIdAndUpdate(id, product, {new:true})
     return {updatedProduct}
   }
